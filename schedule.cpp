@@ -92,12 +92,22 @@ bool Event::operator >(const Event & new_event)const
         }
         return false;
 }
+bool Event::isValidHour(int h){
+	return h >= 0 && h <= 23;
+}
 
+bool Event::isValidMinute( int m){
+	return m >= 0 && m <= 59;
+}
 
 bool Event::Insert()
 {
 	int optionUser; 
 	int MAXCHAR = 30;
+//	int start_hour;
+//	int start_min;
+//	int end_hour;
+//	int end_min; 
 	char temp_name[MAXCHAR];
 	char c; 
 	bool temp_ret =  false; 
@@ -107,25 +117,46 @@ bool Event::Insert()
 	char * temp_newname = new char[strlen(temp_name) + 1];
 	strcpy(temp_newname, temp_name);
 	std::string temp_str( temp_newname, strlen(temp_name) + 1);
-	temp_ret = Edit_name(temp_str); 
+	temp_ret = Edit_name(temp_str);
+
+	while(true){
+		cout << "Enter start time (HH MM): ";
+		cin >> start_hour >> start_min;
+		
+		if(!isValidHour (start_hour) || !isValidMinute(start_min)){
+			cout << "Invalid start time. Hour must be 0-23 and minute 0-59. Ex: 02 34" << endl;
+			continue;
+		}
+
+		cout << "Enter end time (HH MM): ";
+		cin >> end_hour >> end_min; 
 	
-        cout << "Enter start time (24hours - time): " << endl;
- 	cin >> start_hour >> c >> start_min; 	
-	cin.clear();
-	cin.ignore(numeric_limits<streamsize>::max(), '\n');
+		if(!isValidHour (end_hour) || !isValidMinute(end_min)){
+                        cout << "Invalid start time. Hour must be 0-23 and minute 0-59. Ex: 02 34" << endl;
+                        continue;
+                }
+
+		//check the times 
+		int start_total = start_hour * 60 + start_min;
+		int end_total = end_hour * 60 + end_min;
+
+		if (start_total >= end_total){
+			cout << "Invalid Schedule: End time must be after start time " << endl;
+			continue;
+		}
+		break; 
 	
-	cout << "Enter end time (24 hours -time): " << endl;
-	cin >> end_hour >> c >> end_min;
-	cin.clear();
-        cin.ignore(numeric_limits<streamsize>::max(), '\n');
-	
+	}
+
+
+
 	temp_ret = Calculate_duration(); 
 		
 	if(!temp_ret){
 		throw temp_ret;
 	}
 	cout << "no throw was executed in calculate_duration" << endl;
-
+	
 
         cout << "Enter day for the meeting: " << endl;
 	cout << "1 - Monday " << endl;

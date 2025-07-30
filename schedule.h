@@ -27,6 +27,8 @@ class Event
 		bool Compare_name(const Event & new_event)const;
 		bool Compare_day(int day)const;
 		bool Calculate_duration(); 
+		bool isValidHour(int h);
+		bool isValidMinute(int m); 
 		void Display_day(int type_day)const;
 		void Display_duration(int a_duration)const;
 		virtual void Display() const;
