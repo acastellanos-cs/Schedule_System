@@ -92,6 +92,7 @@ bool Event::operator >(const Event & new_event)const
         }
         return false;
 }
+<<<<<<< HEAD
 bool Event::isValidHour(int h){
 	return h >= 0 && h <= 23;
 }
@@ -99,15 +100,25 @@ bool Event::isValidHour(int h){
 bool Event::isValidMinute( int m){
 	return m >= 0 && m <= 59;
 }
+=======
+
+>>>>>>> c1ce0b27cb7d60cbd348a950a09c1a9648744760
 
 bool Event::Insert()
 {
 	int optionUser; 
 	int MAXCHAR = 30;
+<<<<<<< HEAD
 //	int start_hour;
 //	int start_min;
 //	int end_hour;
 //	int end_min; 
+=======
+	int start_hour;
+	int start_min;
+	int end_hour;
+	int end_min; 
+>>>>>>> c1ce0b27cb7d60cbd348a950a09c1a9648744760
 	char temp_name[MAXCHAR];
 	char c; 
 	bool temp_ret =  false; 
@@ -119,6 +130,7 @@ bool Event::Insert()
 	std::string temp_str( temp_newname, strlen(temp_name) + 1);
 	temp_ret = Edit_name(temp_str);
 
+<<<<<<< HEAD
 	while(true){
 		cout << "Enter start time (HH MM): ";
 		cin >> start_hour >> start_min;
@@ -148,6 +160,46 @@ bool Event::Insert()
 	
 	}
 
+=======
+	cout << "linea 116 antes de start time sin arreglar " << endl;
+	/*	
+        cout << "Enter start time (24hours - time): " << endl;
+ 	cin >> start_hour >> c >> start_min; 	
+	cin.clear();
+	cin.ignore(numeric_limits<streamsize>::max(), '\n');
+	
+	cout << "Enter end time (24 hours -time): " << endl;
+	cin >> end_hour >> c >> end_min;
+	cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+	*/
+	
+	cout << "linea 129 despues de start time sina reglar" << endl;
+	while(true){
+		cout << "Enter start time (HH MM): ";
+		cin >> start_hour >> start_min;
+
+		cout << "Enter end time (HH MM): ";
+		cin >> end_hour >> end_min; 
+
+
+		//check the times 
+		if((start_hour) > 0 || start_hour > 23 || start_min < 0 || start_min > 59 || (end_hour < 0 || end_hour > 23 || end_min < 0 || end_min > 59)){
+		cout << "Invalid hour.Try again!! " << endl;
+		continue;
+		}
+
+		//compare times
+		if(end_hour > start_hour || (end_hour == start_hour && end_min > start_min)){
+			cout << "Invalid hour. End time needs to be > than start time" << endl;
+			break;
+
+		}
+		else{
+			cout << "The end time must be after the start time. Please try again." << endl;
+		}
+	}
+>>>>>>> c1ce0b27cb7d60cbd348a950a09c1a9648744760
 
 
 	temp_ret = Calculate_duration(); 
@@ -156,7 +208,11 @@ bool Event::Insert()
 		throw temp_ret;
 	}
 	cout << "no throw was executed in calculate_duration" << endl;
+<<<<<<< HEAD
 	
+=======
+
+>>>>>>> c1ce0b27cb7d60cbd348a950a09c1a9648744760
 
         cout << "Enter day for the meeting: " << endl;
 	cout << "1 - Monday " << endl;

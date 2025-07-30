@@ -24,9 +24,18 @@ int main()
 {
 	
 	cout << "Schedule program" << endl; 
+<<<<<<< HEAD
 	BST mytree;
 	int result = menu(); 
 	
+=======
+
+
+	BST mytree;
+
+	int result = menu(); 
+
+>>>>>>> c1ce0b27cb7d60cbd348a950a09c1a9648744760
 	while((result == 1) || (result == 2)){
 	
 	   cout << endl;
@@ -69,7 +78,49 @@ int main()
            }
            result  = menu();
         }
+<<<<<<< HEAD
 	cout << "Thanks for using the scheduling system" << endl;
+=======
+	cout << "Now let's practice RTTI" << endl; 
+		
+		cin.ignore(30, '\n');
+		cout << "Insert the new meeting" << endl; 
+		Event * temp_node; 
+		Meeting  mymeet; 
+		mymeet.Insert(); 
+		temp_node = &mymeet; 
+		Event * temp2; 
+		temp2 = dynamic_cast<Event*>(temp_node);
+		if(temp2){
+			cout << "my new node is an event" << endl;
+		}
+		cout << endl;
+
+		cout << "Insert a demo " << endl;
+		Demo mydemo; 
+		mymeet.Insert(); 
+		Event * mytemp3 = &mydemo;
+		Demo * temp_node_demo; 
+	
+		temp_node_demo = dynamic_cast<Demo*>(mytemp3);
+		if(temp_node_demo){
+			cout << "my new node is a demo" << endl;
+		}
+		cout << endl;
+
+		cout << "Insert a fullday" << endl;
+		Fullday myfullday;
+		myfullday.Insert(); 
+		Event * temp4 = &myfullday; 
+		Fullday * temp_node_fullday; 
+		temp_node_fullday = dynamic_cast<Fullday*>(temp4);
+		if(temp_node_fullday){
+                        cout << "my new node is a fullday" << endl;
+                }
+		
+
+
+>>>>>>> c1ce0b27cb7d60cbd348a950a09c1a9648744760
 	return 0; 
 }
 
